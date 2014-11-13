@@ -37,7 +37,7 @@ Zliczenie zimportowanych rekordów.
 
 ### <a id="c"></a>c)
 
-[Program](https://github.com/KLamkiewicz/NoSql/blob/master/src/main/java/Mongo.java) zamieniający tagi na tablice tagów w języku Java.
+[Program](https://github.com/KLamkiewicz/NoSql/blob/master/Zad1Podmiana/src/main/java/Mongo.java) zamieniający tagi na tablice tagów w języku Java.
 
 Opis: 
 
@@ -169,3 +169,117 @@ Wykorzystanie pamięci podczas zamiany tagów:
 ***
 
 ### <a id="d"></a>d)
+
+> Wyszukać w sieci dane zawierające obiekty GeoJSON. Następnie dane zapisać w bazie MongoDB.
+
+Jako dane wykorzystałem zapis trzęsień ziemi z dnia poprzedniego z 
+http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
+
+Pobranie danych do MongoDB: 
+
+![importGeo](https://github.com/KLamkiewicz/NoSql/blob/master/Images/importgeo.png)
+
+Ponieważ pobrane dane posiadały trzy współrzędne w tabeli koordynatów, usunąłem trzecią współrzędna ze wszystkich rekordów.
+
+![updateGeo](https://github.com/KLamkiewicz/NoSql/blob/master/Images/updatecoords.png)
+
+Ustawienie indeksu dla GeoJSONa
+
+```
+db.Quakes.ensureIndex({geometry:"2dsphere"}) 
+```
+
+Sprawdzenie
+
+```
+db.Quakes.getIndexes()
+```
+
+___
+
+####*Trzęsienia w odległości od 1km do 150km [-153.1466, 59.2757].*
+
+```
+var origin = {type: "Point", coordinates: [-153.1466, 59.2757]}
+db.Quakes.find(  {  geometry: {$nearSphere: { $geometry: origin, $minDistance: 1000, $maxDistance: 150000  }  } })
+```
+
+Wynik : 
+```
+{ "type" : "Feature", "properties" : { "mag" : 3.4, "place" : "103km SW of Anchor Point, Alaska", "time" : 1415559370000,  "updated" : 1415564195026, "tz" : -600, "url" : "http://earthquake.usgs.gov/earthquakes/eventpage/ak11436926", "detail" : "http://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ak11436926.geojson", "felt" : 0, "cdi" : 1, "mmi" : null, "alert" : null, "status" : "automatic", "tsunami" : null, "sig" : 178, "net" : "ak", "code" : "11436926", "ids" : ",ak11436926,", "sources" : ",ak,", "types" : ",dyfi,general-link,geoserve,nearby-cities,origin,tectonic-summary,", "nst" : null, "dmin" : null, "rms" : 0.66, "gap" : null, "magType" : "ml", "type" : "earthquake", "title" : "M 3.4 - 103km SW of Anchor Point, Alaska" }, "geometry" : { "type" : "Point", "coordinates" : [ -152.9566, 59.0462 ] }, "id" : "ak11436926" },
+{ "type" : "Feature", "properties" : { "mag" : 2.2, "place" : "53km SSW of Homer, Alaska", "time" : 1415515350000, "updated" : 1415521626776, "tz" : -540, "url" : "http://earthquake.usgs.gov/earthquakes/eventpage/ak11436708", "detail" : "http://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ak11436708.geojson", "felt" : null, "cdi" : null, "mmi" : null, "alert" : null, "status" : "automatic", "tsunami" : null, "sig" : 74, "net" : "ak", "code" : "11436708", "ids" : ",ak11436708,", "sources" : ",ak,", "types" : ",general-link,geoserve,nearby-cities,origin,tectonic-summary,", "nst" : null, "dmin" : null, "rms" : 0.92, "gap" : null, "magType" : "ml", "type" : "earthquake", "title" : "M 2.2 - 53km SSW of Homer, Alaska" }, "geometry" : { "type" : "Point", "coordinates" : [ -151.9086, 59.2001 ] }, "id" : "ak11436708" },
+{ "type" : "Feature", "properties" : { "mag" : 3.2, "place" : "35km S of Old Iliamna, Alaska", "time" : 1415491380000, "updated" : 1415520334505, "tz" : -540, "url" : "http://earthquake.usgs.gov/earthquakes/eventpage/ak11436658", "detail" : "http://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ak11436658.geojson", "felt" : null, "cdi" : null, "mmi" : null, "alert" : null, "status" : "automatic", "tsunami" : null, "sig" : 158, "net" : "ak", "code" : "11436658", "ids" : ",ak11436658,", "sources" : ",ak,", "types" : ",dyfi,general-link,geoserve,nearby-cities,origin,tectonic-summary,", "nst" : null, "dmin" : null, "rms" : 0.72, "gap" : null, "magType" : "ml", "type" : "earthquake", "title" : "M 3.2 - 35km S of Old Iliamna, Alaska" }, "geometry" : { "type" : "Point", "coordinates" : [ -154.8608, 59.4365 ] }, "id" : "ak11436658" },
+{  "type" : "Feature", "properties" : { "mag" : 2.2, "place" : "39km E of Redoubt Volcano, Alaska", "time" : 1415556114000, "updated" : 1415560081135, "tz" : -540, "url" : "http://earthquake.usgs.gov/earthquakes/eventpage/ak11436913", "detail" : "http://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ak11436913.geojson", "felt" : null, "cdi" : null, "mmi" : null, "alert" : null, "status" : "automatic", "tsunami" : null, "sig" : 74, "net" : "ak", "code" : "11436913", "ids" : ",ak11436913,", "sources" : ",ak,", "types" : ",general-link,geoserve,nearby-cities,origin,tectonic-summary,", "nst" : null, "dmin" : null, "rms" : 0.53, "gap" : null, "magType" : "ml", "type" : "earthquake", "title" : "M 2.2 - 39km E of Redoubt Volcano, Alaska" }, "geometry" : { "type" : "Point", "coordinates" : [ -152.0299, 60.4926 ] }, "id" : "ak11436913" }
+```
+[GeoJSON](https://github.com/KLamkiewicz/NoSql/blob/master/GeoJson/nearsphere.geojson)
+
+___
+
+####*Polygon oznaczający obszar trzęsień ziemi na południowej Alasce.*
+
+```
+var origin = { "type": "Polygon",  "coordinates": [[[-140.7800, 60.2770], [-152.9566, 59.0462], [-154.8608, 59.4365], [-150.5025, 61.2971], [-140.7800, 60.2770] ] ] }
+```
+
+Polecenie to wyłuskało z każdego wyniku jedynie koordynaty potrzebne do utworzenia polygonu.
+
+```
+(db.Quakes.find({geometry: {$geoWithin: {$geometry: origin}}}).toArray()).forEach(function (e) { print(JSON.stringify(e.geometry.coordinates))});
+```
+
+[GeoJSON](https://github.com/KLamkiewicz/NoSql/blob/master/GeoJson/poly.geojson)
+
+___
+
+####*Trzęsienia ziemi w odległości od 1km do 15km jak widać jest to bardzo aktywny sejsmicznie obszar. Podobnie jak w poprzednim przykładzie zwróciłem jedynie koordynaty.*
+
+```
+var origin = {type: "Point", coordinates: [-119.6225, 41.8913]}
+(db.Quakes.find( { geometry: {   $nearSphere: {$geometry: origin,   $minDistance: 1000,
+   $maxDistance: 15000  } } }).toArray()).forEach(function (e) { print(JSON.stringify(e.geometry.coordinates))});
+```
+
+[GeoJSON](https://github.com/KLamkiewicz/NoSql/blob/master/GeoJson/point2.geojson)
+
+___
+
+####*Polygon oznaczający powyżyszy aktywny obszar sejsmiczny.*
+
+```
+var origin = { "type": "Polygon",  "coordinates": [[[-119.6588, 41.9090], [-119.6402, 41.8474], [-119.5887, 41.9036], [-119.6588, 41.9090]]] }
+
+(db.Quakes.find({geometry: {$geoWithin: {$geometry: origin}}}).toArray()).forEach(function (e) { print(JSON.stringify(e.geometry.coordinates))});
+```
+[GeoJSON](https://github.com/KLamkiewicz/NoSql/blob/master/GeoJson/poly2.geojson)
+
+___
+
+####*Trzęsienia ziemi na lini pomiędzy koordynatami [-153.1466, 58.2757] ,[-153.1466, 60.2757]].*
+
+```
+db.Quakes.find({geometry: {$geoIntersects: {$geometry: origin}}})
+```
+
+Otrzymane współrzędne 
+```
+"coordinates" : [ -153.1466, 59.2757 ] 
+```
+
+[GeoJSON](https://github.com/KLamkiewicz/NoSql/blob/master/GeoJson/straightline.geojson)
+
+___
+
+####*Trzęsienia ziemi w odległości od 1km do 100km od stolicy Puerto Rioco - San Juan.*
+
+```
+var origin = {type: "Point", coordinates: [- 66.1057200, 18.4663300 ]}
+db.Quakes.find( { geometry: { $nearSphere: { $geometry: origin, $minDistance: 1000,  $maxDistance: 100000 } }})
+```
+
+Otrzymany wynik to jedynie jedno trzęsienie ziemi.
+
+```
+{ "type" : "Feature", "properties" : { "mag" : 2.4, "place" : "5km NW of Adjuntas, Puerto Rico", "time" : 1415524288800, "updated" : 1415543141486, "tz" : -240, "url" : "http://earthquake.usgs.gov/earthquakes/eventpage/pr14313002", "detail" : "http://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/pr14313002.geojson", "felt" : null, "cdi" : null, "mmi" : null, "alert" : null, "status" : "REVIEWED", "tsunami" : null, "sig" : 89, "net" : "pr", "code" : "14313002", "ids" : ",pr14313002,", "sources" : ",pr,", "types" : ",cap,geoserve,nearby-cities,origin,tectonic-summary,", "nst" : 7, "dmin" : 0.16798496, "rms" : 0.21, "gap" : 118.8, "magType" : "Md", "type" : "earthquake", "title" : "M 2.4 - 5km NW of Adjuntas, Puerto Rico" }, "geometry" : { "type" : "Point", "coordinates" : [ -66.8312, 18.1952 ] }, "id" : "pr14313002" }
+```
+
+[GeoJSON](https://github.com/KLamkiewicz/NoSql/blob/master/GeoJson/puerto100.geojson)
