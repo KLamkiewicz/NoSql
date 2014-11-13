@@ -25,14 +25,15 @@ public class Mongo {
         return output;
     }
     public static AggregationOutput nonBasicPackages(DBCollection collection){
-        groupFields = new BasicDBObject("_id","$CategoryDescription");
+        groupFields = new BasicDBObject("_id","$package_name");
         groupFields.put("total", new BasicDBObject("$sum", 1 ));
         group = new BasicDBObject("$group", groupFields);
         sort = new BasicDBObject("$sort", new BasicDBObject("total", -1));
         match = new BasicDBObject("$match", new BasicDBObject("Language", "English"));
+        DBObject matchs = new BasicDBObject("$match", new BasicDBObject("package_id", new BasicDBObject("$ne", 0)));
         limit = new BasicDBObject("$limit", 10);
 
-        List<DBObject> pipeline = Arrays.asList(match, group, sort, limit);
+        List<DBObject> pipeline = Arrays.asList(match, matchs, group, sort, limit);
         AggregationOutput output = collection.aggregate(pipeline);
         for(DBObject result : output.results()){
             System.out.println(result);
@@ -92,10 +93,10 @@ public class Mongo {
         DB db = client.getDB("Hospital");
         DBCollection collection = db.getCollection("plan");
 
-//        dataPlanLanguage(collection);
-//        englishCatDescription(collection);
-//        spanishCatDescription(collection);
-//        categoryCode(collection);
+        dataPlanLanguage(collection);
+        englishCatDescription(collection);
+        spanishCatDescription(collection);
+        categoryCode(collection);
         nonBasicPackages(collection);
 
     }
