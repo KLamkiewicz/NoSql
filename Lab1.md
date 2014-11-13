@@ -22,8 +22,28 @@ Pierwszym krokiem było poprawienie pliku CSV przy użyciu 2unix.sh:
 Następnie zimportowałem przerobiony plik do mongodb:
 ![dbCount](https://github.com/KLamkiewicz/NoSql/blob/master/Images/import.png)  
 
-Co ciekawe wcześniej próbowałem zimportować bazę pod systemem Windows XP 32bit i średnia ilość importowanych rekordów na sekundę wynosiła ponad 10k. Jednak wersja 32bitowa MongoDb posiada ograniczenie 2GB na rozmiar bazy danych dlatego zadania musiałem wykonywać na systemie Windows 7 64bit, na którym średnia wynosiła ledwo 2.5k rekordoów na sekundę.
+Co ciekawe wcześniej próbowałem zimportować bazę pod systemem Windows XP 32bit i średnia ilość importowanych rekordów na sekundę wynosiła ponad 10k. Jednak wersja 32bitowa MongoDb posiada ograniczenie 2GB na rozmiar bazy danych dlatego zadania musiałem wykonywać na systemie Windows 7 64bit, na którym średnia wynosiła ledwo 2.5k rekordów na sekundę.
 
+Zaimportowanie bazy do postgresa zajęło już znacznie mniej czasu, bo jedynie około 17 minut.
+
+Utworzenie tabeli w postgresie: 
+
+
+![post](https://github.com/KLamkiewicz/NoSql/blob/master/Images/postgres/createpostgres.png)
+
+<br/>
+
+Monitor zasobów podczas importu:
+
+![imz](https://github.com/KLamkiewicz/NoSql/blob/master/Images/postgres/postgresimportmonitor.png)
+
+<br/>
+
+Zaimportowana baza:
+
+![import](https://github.com/KLamkiewicz/NoSql/blob/master/Images/postgres/postgresimport.png)
+
+<br/>
 
 ***
 
