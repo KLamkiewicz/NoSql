@@ -1,0 +1,8 @@
+{
+	"name": "Mafia",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies": {
+		"mongodb" : "~2.0.x"
+	}
+}
