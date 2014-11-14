@@ -3,6 +3,7 @@
 * Dysk twardy WD5000 500GB 7200RPM
 * Procesor Pentium Dual-Core E5400 @ 2.70Ghz
 * Ram 2GB DDR2
+* System Windows 7 64bit
 
 ***
 
