@@ -68,6 +68,7 @@ if(err) throw err;
 		], function(err, result){
 			console.log("Category code");
 			console.log(result);
+			db.close();
 		});
 
 	});

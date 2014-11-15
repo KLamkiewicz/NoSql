@@ -10,7 +10,7 @@ public class Mongo {
         MongoConnection conn = new MongoConnection("localhost", 27017);
         MongoClient client = conn.getMongoClient();
         DB db = client.getDB("Lab");
-        DBCollection collection = db.getCollection("TestB");
+        DBCollection collection = db.getCollection("TrainRC");
         DBCursor cursor = collection.find();
 
         Map<String, Integer> tagMap = new HashMap<String, Integer>();
@@ -22,28 +22,35 @@ public class Mongo {
         cursor.snapshot();
             while (cursor.hasNext()) {
                 DBObject o = cursor.next();
-
                 String tags[];
-                if ((o.get("tags") instanceof String)) {
-                    tags = o.get("tags").toString().split(" ");
+
+                if ((o.get("Tags") instanceof String)) {
+                    tags = o.get("Tags").toString().split(" ");
                     for (String t : tags) {
                         int count = tagMap.containsKey(t) ? tagMap.get(t) : 0;
                         tagMap.put(t, count + 1);
                     }
-                    o.put("tags", tags);
+                    o.put("Tags", tags);
                     collection.save(o);
-                } else if (NumberUtils.isNumber(o.get("tags").toString())) {
-                    String t = o.get("tags").toString();
+                } else if (NumberUtils.isNumber(o.get("Tags").toString())) {
+                    String t = o.get("Tags").toString();
                     int count = tagMap.containsKey(t)?tagMap.get(t):0;
                     tagMap.put(t, count + 1);
-                    o.put("tags", t);
+                    o.put("Tags", t);
                     collection.save(o);
                 } else {
-                    BasicDBList l = (BasicDBList) o.get("tags");
-                    for (Object t : (Object[]) l.toArray()) {
-                        int count = tagMap.containsKey(t) ? tagMap.get(t) : 0;
-                        tagMap.put((String) t, count + 1);
-                    }
+//                    if(o.get("Tags") instanceof Double){
+//                        Object obj = o.get("Tags");
+//                        String s = Double.toString((Double) obj);
+//                        int count = tagMap.containsKey(s) ? tagMap.get(s) : 0;
+//                        tagMap.put(s, count + 1);
+//                    }else {
+                        BasicDBList l = (BasicDBList) o.get("Tags");
+                        for (Object t : (Object[]) l.toArray()) {
+                            int count = tagMap.containsKey(t) ? tagMap.get(t) : 0;
+                            tagMap.put((String) t, count + 1);
+                        }
+                  //  }
                 }
             }
 

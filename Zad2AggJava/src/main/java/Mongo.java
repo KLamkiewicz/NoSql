@@ -93,11 +93,14 @@ public class Mongo {
         DB db = client.getDB("Hospital");
         DBCollection collection = db.getCollection("plan");
 
+        Long time = System.currentTimeMillis();
+
         dataPlanLanguage(collection);
         englishCatDescription(collection);
         spanishCatDescription(collection);
         categoryCode(collection);
         nonBasicPackages(collection);
 
+        System.out.println("Time " + (System.currentTimeMillis() - time) + "ms");
     }
 }
