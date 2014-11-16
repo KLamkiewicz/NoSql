@@ -130,7 +130,7 @@ col.aggregate([
 
 	MongoDB 2.6.5
 	
-![aggjs]()
+![aggjs](https://github.com/KLamkiewicz/NoSql/blob/master/Images/aggregatejs.png)
 	
 	MongoDB 2.8.0-rc0
 	
@@ -248,6 +248,14 @@ public class Mongo {
 }
 
 ```
+
+	MongoDB 2.6.5
+	
+![aggjava](https://github.com/KLamkiewicz/NoSql/blob/master/Images/aggregatejava.png)
+	
+	MongoDB 2.8.0-rc0
+	
+![aggjavarc](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/hospital/timeaggregationsjava.png)
 
 
 
