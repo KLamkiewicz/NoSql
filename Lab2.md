@@ -4,6 +4,7 @@ ___
 
 Baza jaką pobrałem to 2014 Drug and Health Plan Data z http://www.medicare.gov/download/downloaddb.asp
 
+	MongoDB 2.6.5
 
 Polecenie import:
 
@@ -12,6 +13,16 @@ Polecenie import:
 Import czas:
 
 ![czas](https://github.com/KLamkiewicz/NoSql/blob/master/Images/hospimporttime.png)
+
+	MongoDB 2.8.0-rc0
+	
+Polecenie:
+
+![importrc](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/hospital/importcommand.png)
+
+Import czas:
+
+![czasrc](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/hospital/importtime.png)
 
 
 <br/>
@@ -116,6 +127,14 @@ col.aggregate([
 ```
 
 ![katcode](https://github.com/KLamkiewicz/NoSql/blob/master/Images/wykresy/categorycodetop.png)
+
+	MongoDB 2.6.5
+	
+![aggjs]()
+	
+	MongoDB 2.8.0-rc0
+	
+![aggjsrc](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/hospital/aggregatejs.png)
 
 <br/>
 <br/>
