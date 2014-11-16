@@ -1,9 +1,9 @@
 ##Komputer 
 
-* Dysk twardy WD5000 500GB 7200RPM
-* Procesor Pentium Dual-Core E5400 @ 2.70Ghz
-* Ram 2GB DDR2
-* System Windows 7 64bit
+	* Dysk twardy WD5000 500GB 7200RPM
+	* Procesor Pentium Dual-Core E5400 @ 2.70Ghz
+	* Ram 2GB DDR2
+	* System Windows 7 64bit
 
 ***
 
@@ -20,8 +20,15 @@
 Pierwszym krokiem było poprawienie pliku CSV przy użyciu 2unix.sh:
 ![2unix](https://github.com/KLamkiewicz/NoSql/blob/master/Images/2shell.png)
 
-Następnie zimportowałem przerobiony plik do mongodb:
+</br>
+
+	Następnie zimportowałem przerobiony plik do mongodb - MongoDB 2.6.5:
+	
 ![dbCount](https://github.com/KLamkiewicz/NoSql/blob/master/Images/import.png)  
+
+	MongoDB 2.8.0-rc0
+	
+![dbCountrc](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/importtime.png) 
 
 Co ciekawe wcześniej próbowałem zimportować bazę pod systemem Windows XP 32bit i średnia ilość importowanych rekordów na sekundę wynosiła ponad 10k. Jednak wersja 32bitowa MongoDb posiada ograniczenie 2GB na rozmiar bazy danych dlatego zadania musiałem wykonywać na systemie Windows 7 64bit, na którym średnia wynosiła ledwo 2.5k rekordów na sekundę.
 
@@ -186,6 +193,35 @@ Jak można zauważyć ze względu na mój wolny komputer całość zajęła pona
 Wykorzystanie pamięci podczas zamiany tagów:
 
 ![zamiana](https://github.com/KLamkiewicz/NoSql/blob/master/Images/monitor.png)
+
+
+	Przykłady dla MongoDB 2.8.0-rc0
+	
+Zliczenie 10k podczas podmiany tagów:
+
+![10kb](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/10ktags.png)
+
+Zliczanie 10k po podmianie tagów:
+
+![10ka](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/10kafter.png)
+
+Zliczenie 100k podczas podmiany tagów:
+
+![10kb](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/100ktags.png)
+
+Zliczanie 10k po podmianie tagów:
+
+![10ka](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/100kafter.png)
+
+Całość:
+
+![allrc](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/olddrivertagsrc.png)
+
+Pamięć:
+
+![monrc](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/tagimonitor.png)
+
+
 
 ***
 
