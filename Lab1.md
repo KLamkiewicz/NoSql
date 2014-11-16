@@ -8,6 +8,7 @@
 ***
 
 # Zadanie 1
+
   * [a)](#a)
   * [b)](#b)
   * [c)](#c)
@@ -30,12 +31,8 @@ Pierwszym krokiem było poprawienie pliku CSV przy użyciu 2unix.sh:
 	
 ![dbCountrc](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/importtime.png) 
 
-Co ciekawe wcześniej próbowałem zimportować bazę pod systemem Windows XP 32bit i średnia ilość importowanych rekordów na sekundę wynosiła ponad 10k. Jednak wersja 32bitowa MongoDb posiada ograniczenie 2GB na rozmiar bazy danych dlatego zadania musiałem wykonywać na systemie Windows 7 64bit, na którym średnia wynosiła ledwo 2.5k rekordów na sekundę.
-
-Zaimportowanie bazy do postgresa zajęło już znacznie mniej czasu, bo jedynie około 17 minut.
 
 Utworzenie tabeli w postgresie: 
-
 
 ![post](https://github.com/KLamkiewicz/NoSql/blob/master/Images/postgres/createpostgres.png)
 
