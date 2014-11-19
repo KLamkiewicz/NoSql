@@ -9,8 +9,8 @@ public class Mongo {
 
         MongoConnection conn = new MongoConnection("localhost", 27017);
         MongoClient client = conn.getMongoClient();
-        DB db = client.getDB("Lab");
-        DBCollection collection = db.getCollection("TrainRC");
+        DB db = client.getDB("LabWT");
+        DBCollection collection = db.getCollection("Train");
         DBCursor cursor = collection.find();
 
         Map<String, Integer> tagMap = new HashMap<String, Integer>();
@@ -39,18 +39,18 @@ public class Mongo {
                     o.put("Tags", t);
                     collection.save(o);
                 } else {
-//                    if(o.get("Tags") instanceof Double){
-//                        Object obj = o.get("Tags");
-//                        String s = Double.toString((Double) obj);
-//                        int count = tagMap.containsKey(s) ? tagMap.get(s) : 0;
-//                        tagMap.put(s, count + 1);
-//                    }else {
+                    if(o.get("Tags") instanceof Double){
+                        Object obj = o.get("Tags");
+                        String s = Double.toString((Double) obj);
+                        int count = tagMap.containsKey(s) ? tagMap.get(s) : 0;
+                        tagMap.put(s, count + 1);
+                    }else {
                         BasicDBList l = (BasicDBList) o.get("Tags");
                         for (Object t : (Object[]) l.toArray()) {
                             int count = tagMap.containsKey(t) ? tagMap.get(t) : 0;
                             tagMap.put((String) t, count + 1);
                         }
-                  //  }
+                    }
                 }
             }
 
