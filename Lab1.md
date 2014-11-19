@@ -31,6 +31,21 @@ Pierwszym krokiem było poprawienie pliku CSV przy użyciu 2unix.sh:
 	
 ![dbCountrc](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/importtime.png) 
 
+	MongoDB 2.8.0-rc0 z użyciem Wired Tiger
+
+Start serwera z użyciem Wired Tiger:
+
+![start](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/wiredtiger/start.png)
+
+Import:
+
+![impwt](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/wiredtiger/import.png)
+
+Niestety błąd, otrzymuje informację o niewstarczającej ilości przestrzeni, mimo, że takową posiadam, a następni serwer ulega zamknięciu:
+
+![timewt](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/wiredtiger/errorimport.png)
+	
+
 
 Utworzenie tabeli w postgresie: 
 
