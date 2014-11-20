@@ -45,6 +45,34 @@ Niestety błąd, otrzymuje informację o niewstarczającej ilości przestrzeni, 
 
 ![timewt](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/wiredtiger/errorimport.png)
 	
+	MongoDB 2.8.0-rc1 z użyciem Wired Tiger
+	
+Sprawdzenie wersji:
+
+![ver](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/wiredtiger/rc1version.png)
+
+Start serwera:
+
+![startrc1](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/wiredtiger/rc1start.png)
+
+Import:
+
+![imp](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/wiredtiger/rc1import.png)
+
+Pamięć:
+
+![mem](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/wiredtiger/rc1memory.png)
+
+CPU:
+
+![cprc1](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/wiredtiger/rc1cpu.png)
+
+Czas:
+
+![time](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/wiredtiger/rc1importtime.png)
+
+
+####Postgres
 
 
 Utworzenie tabeli w postgresie: 
@@ -234,6 +262,15 @@ Pamięć:
 ![monrc](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/tagimonitor.png)
 
 
+	Przykłady dla MongoDB 2.8.0-rc1
+
+Zamiana:
+
+![allrc1](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/wiredtiger/rc1tags.png)
+
+Pamięć:
+
+![memrc1](https://github.com/KLamkiewicz/NoSql/blob/master/Images/MongoRC/wiredtiger/rc1tagsmonitor.png)
 
 ***
 
